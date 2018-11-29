@@ -11,8 +11,14 @@ function Thermostat() {
   this.maxTemperature = PSM_ON_MAX_TEMP;
 }
 
+Thermostat.prototype.getCurrentTemperature = function() {
+  return this.temperature;
+};
+
 Thermostat.prototype.inscreaseTemperature = function() {
-  this.temperature++;
+  if (this.temperature < this.maxTemperature) {
+    this.temperature++;
+  }
 };
 
 Thermostat.prototype.decreaseTemperature = function() {

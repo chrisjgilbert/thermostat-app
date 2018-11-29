@@ -11,17 +11,36 @@ describe('Thermostat', function() {
   describe('the temperature', function() {
 
     it('has a default starting temperature of 20', function() {
-      expect(thermostat.temperature).toEqual(DEFAULT_STARTING_TEMP);
+      expect(thermostat.getCurrentTemperature()).toEqual(DEFAULT_STARTING_TEMP);
     });
 
     it('can be increased', function() {
       thermostat.inscreaseTemperature();
-      expect(thermostat.temperature).toEqual(DEFAULT_STARTING_TEMP + 1);
+      expect(thermostat.getCurrentTemperature()).toEqual(DEFAULT_STARTING_TEMP + 1);
     });
+
+    it('cant be increased past the max temp with power saving on', function() {
+      thermostat.powerSavingOn();
+      var i;
+      for(i = 20; i < 26 ; i++) {
+        thermostat.inscreaseTemperature();
+      }
+      expect(thermostat.getCurrentTemperature()).toEqual(PSM_ON_MAX_TEMP);
+    });
+
+    it('cant be increased past the max temp with power saving off', function() {
+      thermostat.powerSavingOff();
+      var i;
+      for(i = 20; i < 33 ; i++) {
+        thermostat.inscreaseTemperature();
+      }
+      expect(thermostat.getCurrentTemperature()).toEqual(PSM_OFF_MAX_TEMP);
+    });
+
 
     it('can be decreased', function() {
       thermostat.decreaseTemperature();
-      expect(thermostat.temperature).toEqual(DEFAULT_STARTING_TEMP + -1);
+      expect(thermostat.getCurrentTemperature()).toEqual(DEFAULT_STARTING_TEMP + -1);
     });
 
     it('has a minimum', function() {
