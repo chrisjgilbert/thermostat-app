@@ -31,6 +31,7 @@ $(document).ready(function() {
 
   function updateTemperature() {
     $('#temperature').text(thermostat.getCurrentTemperature());
+    $('#temperature').attr('class', thermostat.getEnergyUsage());
     updatePSMStatus();
   };
 
