@@ -34,20 +34,17 @@ $(document).ready(function() {
     $('#temperature').text(thermostat.getCurrentTemperature());
     $('#temperature').attr('class', thermostat.getEnergyUsage());
     updatePSMStatus();
+    postTemperature();
   };
 
-  // function postTemperature() {
-  //   $.post("http://localhost:4567/savetemperature",
-  //     {
-  //   name: "Donald Duck",
-  //   city: "Duckburg"
-  //     },
-  //   function(data, status){
-  //     alert("Data: " + data + "\nStatus: " + status);
-  //   });
-  // };
-  //
-  // postTemperature();
+  function postTemperature() {
+    var temperature = thermostat.getCurrentTemperature();
+    $.post("http://localhost:4567/savetemperature",
+      { temperature: temperature },
+    function(){
+      console.log('temp posted success', temperature);
+    });
+  };
 
   function updatePSMStatus() {
     if (thermostat.isPowerSaving) {
