@@ -55,6 +55,10 @@ describe('Thermostat', function() {
 
   describe('power saving mode', function() {
 
+    it ('is on by default', function() {
+      expect(thermostat.isPowerSaving()).toEqual(true);
+    });
+
     it('sets the max temp to 25 when turned on', function() {
       thermostat.powerSavingOn();
       expect(thermostat.maxTemperature).toEqual(PSM_ON_MAX_TEMP);
