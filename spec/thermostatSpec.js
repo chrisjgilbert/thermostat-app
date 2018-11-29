@@ -28,6 +28,23 @@ describe('Thermostat', function() {
       expect(thermostat.minTemperature).toEqual(DEFAULT_MIN_TEMP);
     });
 
+    it('has a maximum set by the power saving mode being on by default ', function() {
+      expect(thermostat.maxTemperature).toEqual(PSM_ON_MAX_TEMP);
+    });
+
+  });
+
+  describe('power saving mode', function() {
+
+    it('sets the max temp to 25 when turned on', function() {
+      thermostat.powerSavingOn();
+      expect(thermostat.maxTemperature).toEqual(PSM_ON_MAX_TEMP);
+    });
+
+    it('sets the max temp to 32 when turned off', function() {
+      thermostat.powerSavingOff();
+      expect(thermostat.maxTemperature).toEqual(PSM_OFF_MAX_TEMP);
+    });
 
   });
 
