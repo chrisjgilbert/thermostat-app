@@ -2,9 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-
      <link rel="stylesheet" type="text/css" href="css/style.css">
-    <title>Thermostat</title>
+    <title>Thermostat App</title>
   </head>
   <body>
 
@@ -16,9 +15,21 @@
     <button id="psm-off" type="button" >PSM OFF</button>
     <h2 id="psm-status"></h2>
 
+    <label for="current-city">Select City:
+      <select id="current-city">
+        <option value="">+Select+</option>
+        <option value="London">London</option>
+        <option value="Berlin">Berlin</option>
+        <option value="Los Angeles">Los Angeles</option>
+      </select>
+    </label>
+
+    <h2>Temperature in <span id="city"></span> now: <span id="current-temperature"></span></h2>
+
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="src//jquery.js"></script>
     <script src="src/interface.js"></script>
     <script src="src/thermostat.js"></script>
+
   </body>
 </html>
