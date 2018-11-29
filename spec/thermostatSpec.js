@@ -24,6 +24,10 @@ describe('Thermostat', function() {
       expect(thermostat.temperature).toEqual(DEFAULT_STARTING_TEMP + -1);
     });
 
+    it('has a minimum', function() {
+      expect(thermostat.minTemperature).toEqual(DEFAULT_MIN_TEMP);
+    });
+
 
   });
 
