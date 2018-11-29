@@ -19,6 +19,11 @@ describe('Thermostat', function() {
       expect(thermostat.temperature).toEqual(DEFAULT_STARTING_TEMP + 1);
     });
 
+    it('can be decreased', function() {
+      thermostat.decreaseTemperature();
+      expect(thermostat.temperature).toEqual(DEFAULT_STARTING_TEMP + -1);
+    });
+
 
   });
 
