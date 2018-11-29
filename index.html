@@ -13,16 +13,13 @@
     <button id="reset-temp" type="button">Reset</button>
     <button id="psm-on" type="button" >PSM ON</button>
     <button id="psm-off" type="button" >PSM OFF</button>
-    <h2 id="psm-status"></h2>
+    <h2>Power saving status: <span id="psm-status"></span></h2>
 
-    <label for="current-city">Select City:
-      <select id="current-city">
-        <option value="">+Select+</option>
-        <option value="London">London</option>
-        <option value="Berlin">Berlin</option>
-        <option value="Los Angeles">Los Angeles</option>
-      </select>
-    </label>
+    <form id="select-city">
+      <h2>Type in a city:</h2>
+      <input id="chosen-city" type="text" placeholder="enter city name">
+      <input type="submit" value="submit">
+    </form>
 
     <h2>Temperature in <span id="city"></span> now: <span id="current-temperature"></span></h2>
 
