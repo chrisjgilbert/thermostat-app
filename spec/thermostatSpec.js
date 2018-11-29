@@ -71,5 +71,18 @@ describe('Thermostat', function() {
 
   });
 
+  describe('reset', function() {
+
+    it('changes temperature back to the starting temp', function() {
+      var i;
+      for(i = 20; i < 33 ; i++) {
+        thermostat.inscreaseTemperature();
+      }
+      thermostat.resetTemperature();
+      expect(thermostat.getCurrentTemperature()).toEqual(DEFAULT_STARTING_TEMP);
+    });
+
+  });
+
 
 });
