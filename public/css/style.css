@@ -1,0 +1,41 @@
+body {
+  font-size: 25px;
+}
+
+.low-usage {
+  color: green;
+}
+
+.medium-usage {
+  color: orange;
+}
+
+.high-usage {
+  color: red;
+}
+
+span {
+  font-weight: bold;
+}
+
+.container {
+  margin-top: 120px;
+  text-align: center;
+}
+
+.form-group {
+  padding: 20px;
+}
+
+.psm-off {
+  color: red;
+}
+
+.psm-on {
+  color: green;
+}
+
+.form-group {
+  width: 500px;
+  margin: 0 auto;
+}

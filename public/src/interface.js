@@ -2,6 +2,7 @@ $(document).ready(function() {
 
   var thermostat = new Thermostat;
   $('#temperature').text(updateTemperature());
+  $('#city-display').hide();
 
   $('#increase-temp').on('click', function() {
     thermostat.inscreaseTemperature();
@@ -35,17 +36,30 @@ $(document).ready(function() {
     updatePSMStatus();
   };
 
+  // function postTemperature() {
+  //   $.post("http://localhost:4567/savetemperature",
+  //     {
+  //   name: "Donald Duck",
+  //   city: "Duckburg"
+  //     },
+  //   function(data, status){
+  //     alert("Data: " + data + "\nStatus: " + status);
+  //   });
+  // };
+  //
+  // postTemperature();
+
   function updatePSMStatus() {
     if (thermostat.isPowerSaving) {
-      $('#psm-status').text('On');
+      $('#psm-status').text('On').attr('class', 'psm-on');
     } else {
-      $('#psm-status').text('Off');
+      $('#psm-status').text('Off').attr('class', 'psm-off');
     }
   };
 
   function displayWeather(city) {
     var url = 'http://api.openweathermap.org/data/2.5/weather?q=' + city;
-    var token = '&appid=a3d9eb01d4de82b9b8d0849ef604dbed';
+    var token = 'API KEY';
     var units = '&units=metric';
     $.get(url + token + units, function(data) {
       $('#current-temperature').text(data.main.temp)
@@ -57,6 +71,7 @@ $(document).ready(function() {
     event.preventDefault();
     var city = $('#chosen-city').val();
     displayWeather(city);
+    $('#city-display').fadeIn(500);
   })
 
 });

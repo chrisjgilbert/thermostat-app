@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+     <link rel="stylesheet" type="text/css" href="css/style.css">
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Thermostat App</title>
+  </head>
+  <body>
+
+    <div class="container">
+      <button class="btn btn-danger" id="increase-temp" type="button" value="+">+</button>
+      <button class="btn btn-primary" id="decrease-temp" type="button" value="-">-</button>
+      <h1 id="temperature" class="energy-usage"></h1>
+
+      <button class="btn btn-secondary" id="reset-temp" type="button">Reset</button>
+      <button class="btn btn-success" id="psm-on" type="button" >PSM ON</button>
+      <button class="btn btn-warning" id="psm-off" type="button" >PSM OFF</button>
+      <h2>Power saving status: <span class="psm-on" id="psm-status"></span></h2>
+
+
+      <form class="form-group" id="select-city" method='post'>
+        <h2>Type in a city:</h2>
+        <input class="form-control" id="chosen-city" type="text" placeholder="enter city name">
+        <input class="form-control" type="submit" value="submit">
+      </form>
+
+      <h2 id="city-display">Temperature in <span id="city"></span> now: <span id="current-temperature"></span></h2>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="src//jquery.js"></script>
+    <script src="src/interface.js"></script>
+    <script src="src/thermostat.js"></script>
+
+  </body>
+</html>
