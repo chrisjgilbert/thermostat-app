@@ -43,12 +43,20 @@ describe('Thermostat', function() {
       expect(thermostat.getCurrentTemperature()).toEqual(DEFAULT_STARTING_TEMP + -1);
     });
 
+    it('cant be decreased past the min temp', function() {
+      var i;
+      for(i = 20; i > 0 ; i--) {
+        thermostat.decreaseTemperature();
+      }
+      expect(thermostat.getCurrentTemperature()).toEqual(DEFAULT_MIN_TEMP);
+    });
+
     it('has a minimum', function() {
-      expect(thermostat.minTemperature).toEqual(DEFAULT_MIN_TEMP);
+      expect(thermostat.getCurrentMinTemperature()).toEqual(DEFAULT_MIN_TEMP);
     });
 
     it('has a maximum set by the power saving mode being on by default ', function() {
-      expect(thermostat.maxTemperature).toEqual(PSM_ON_MAX_TEMP);
+      expect(thermostat.getCurrentMaxTemperature()).toEqual(PSM_ON_MAX_TEMP);
     });
 
   });
@@ -61,12 +69,12 @@ describe('Thermostat', function() {
 
     it('sets the max temp to 25 when turned on', function() {
       thermostat.powerSavingOn();
-      expect(thermostat.maxTemperature).toEqual(PSM_ON_MAX_TEMP);
+      expect(thermostat.getCurrentMaxTemperature()).toEqual(PSM_ON_MAX_TEMP);
     });
 
     it('sets the max temp to 32 when turned off', function() {
       thermostat.powerSavingOff();
-      expect(thermostat.maxTemperature).toEqual(PSM_OFF_MAX_TEMP);
+      expect(thermostat.getCurrentMaxTemperature()).toEqual(PSM_OFF_MAX_TEMP);
     });
 
   });
@@ -80,6 +88,31 @@ describe('Thermostat', function() {
       }
       thermostat.resetTemperature();
       expect(thermostat.getCurrentTemperature()).toEqual(DEFAULT_STARTING_TEMP);
+    });
+
+  });
+
+  describe('energy saving', function() {
+
+    it('low usage is under 18', function() {
+      var i;
+      for(i = 20; i > 12 ; i--) {
+        thermostat.decreaseTemperature();
+      }
+      expect(thermostat.getEnergyUsage()).toEqual('low-usage');
+    });
+
+    it('medium usage is under 25', function() {
+      expect(thermostat.getEnergyUsage()).toEqual('medium-usage');
+    });
+
+    it('high usage is over 25', function() {
+      thermostat.powerSavingOff();
+      var i;
+      for(i = 20; i < 30 ; i++) {
+        thermostat.inscreaseTemperature();
+      }
+      expect(thermostat.getEnergyUsage()).toEqual('high-usage');
     });
 
   });
