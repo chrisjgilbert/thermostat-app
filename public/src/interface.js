@@ -1,8 +1,8 @@
 $(document).ready(function() {
 
   var thermostat = new Thermostat;
-  $('#temperature').text(getTemperature());
   $('#city-display').hide();
+  thermostat.setCurrentTemperature(getTemperature());
 
   $('#increase-temp').on('click', function() {
     thermostat.inscreaseTemperature();
@@ -32,15 +32,15 @@ $(document).ready(function() {
 
   function updateTemperature() {
     $('#temperature').text(thermostat.getCurrentTemperature());
-    $('#temperature').attr('class', thermostat.getEnergyUsage());
     updatePSMStatus();
     postTemperature();
-    postEnergyUsage();
   };
 
   function getTemperature() {
     $.get("http://localhost:4567/temperature", function(data) {
       $('#temperature').text(data.temperature);
+      thermostat.setCurrentTemperature(data.temperature);
+      return data.temperature;
     })
   };
 
@@ -50,15 +50,6 @@ $(document).ready(function() {
       { temperature: temperature },
     function(){
       console.log('temp posted success', temperature);
-    });
-  };
-
-  function postEnergyUsage() {
-    var energyUsage = thermostat.getEnergyUsage();
-    $.post("http://localhost:4567/savetemperature",
-      { energyUsage: energyUsage },
-    function(){
-      console.log('energy posted success', energyUsage);
     });
   };
 

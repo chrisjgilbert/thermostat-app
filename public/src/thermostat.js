@@ -22,6 +22,10 @@ Thermostat.prototype.getCurrentTemperature = function() {
   return this.temperature;
 };
 
+Thermostat.prototype.setCurrentTemperature = function(temperature) {
+  this.temperature = temperature;
+};
+
 Thermostat.prototype.getCurrentMaxTemperature = function() {
   return this.maxTemperature;
 };

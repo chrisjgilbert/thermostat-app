@@ -9,7 +9,7 @@ class ThermostatApp < Sinatra::Base
   end
 
   get '/' do
-    erb :index
+    erb :indexs
   end
 
   get '/temperature' do
@@ -22,7 +22,7 @@ class ThermostatApp < Sinatra::Base
 
   post '/savetemperature' do
     session[:temperature] = params[:temperature]
-    # session[:energyUsage] = params[:energyUsage]
+    # session[:energy] = params[:energy]
     redirect '/'
   end
 
