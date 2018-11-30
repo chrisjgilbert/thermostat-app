@@ -21,7 +21,6 @@ $(document).ready(function() {
 
   $('#psm-on').on('click', function() {
     thermostat.powerSavingOn();
-    $('#psm-status').text('On');
     updateTemperature();
   });
 
@@ -45,7 +44,7 @@ $(document).ready(function() {
 
   function postTemperature() {
     var temperature = thermostat.getCurrentTemperature();
-    $.post("http://localhost:4567/savetemperature",
+    $.post("http://localhost:4567/temperature",
       { temperature: temperature },
     function(){
       console.log('temp posted success', temperature);
@@ -53,7 +52,7 @@ $(document).ready(function() {
   };
 
   function updatePSMStatus() {
-    if (thermostat.isPowerSaving) {
+    if (thermostat.isPowerSaving()) {
       $('#psm-status').text('On').attr('class', 'psm-on');
     } else {
       $('#psm-status').text('Off').attr('class', 'psm-off');
@@ -75,6 +74,6 @@ $(document).ready(function() {
     var city = $('#chosen-city').val();
     displayWeather(city);
     $('#city-display').fadeIn(500);
-  })
+  });
 
 });

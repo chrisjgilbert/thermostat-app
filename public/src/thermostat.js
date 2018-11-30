@@ -47,13 +47,16 @@ Thermostat.prototype.decreaseTemperature = function() {
 };
 
 Thermostat.prototype.powerSavingOn = function() {
+  if (this.temperature > PSM_ON_MAX_TEMP) {
+    this.temperature = PSM_ON_MAX_TEMP;
+  }
   this.maxTemperature = PSM_ON_MAX_TEMP;
-  this.isPowerSaving = true;
+  this._isPowerSaving = true;
 };
 
 Thermostat.prototype.powerSavingOff = function() {
   this.maxTemperature = PSM_OFF_MAX_TEMP;
-  this.isPowerSaving = false;
+  this._isPowerSaving = false;
 };
 
 Thermostat.prototype.resetTemperature = function () {
