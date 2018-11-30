@@ -56,7 +56,7 @@ Thermostat.prototype.resetTemperature = function () {
   this.temperature = DEFAULT_STARTING_TEMP;
 };
 
-Thermostat.prototype.getEnergyUsage = function () {
+Thermostat.prototype.getEnergyUsage = function() {
   if (this.temperature < LOW_USAGE_LIMIT) {
     return 'low-usage';
   } else if (this.temperature < MED_USAGE_LIMIT) {

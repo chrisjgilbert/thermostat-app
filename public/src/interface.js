@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
   var thermostat = new Thermostat;
-  $('#temperature').text(updateTemperature());
+  $('#temperature').text(getTemperature());
   $('#city-display').hide();
 
   $('#increase-temp').on('click', function() {
@@ -35,6 +35,13 @@ $(document).ready(function() {
     $('#temperature').attr('class', thermostat.getEnergyUsage());
     updatePSMStatus();
     postTemperature();
+    postEnergyUsage();
+  };
+
+  function getTemperature() {
+    $.get("http://localhost:4567/temperature", function(data) {
+      $('#temperature').text(data.temperature);
+    })
   };
 
   function postTemperature() {
@@ -43,6 +50,15 @@ $(document).ready(function() {
       { temperature: temperature },
     function(){
       console.log('temp posted success', temperature);
+    });
+  };
+
+  function postEnergyUsage() {
+    var energyUsage = thermostat.getEnergyUsage();
+    $.post("http://localhost:4567/savetemperature",
+      { energyUsage: energyUsage },
+    function(){
+      console.log('energy posted success', energyUsage);
     });
   };
 
@@ -56,7 +72,7 @@ $(document).ready(function() {
 
   function displayWeather(city) {
     var url = 'http://api.openweathermap.org/data/2.5/weather?q=' + city;
-    var token = 'API KEY';
+    var token = '&appid=a3d9eb01d4de82b9b8d0849ef604dbed';
     var units = '&units=metric';
     $.get(url + token + units, function(data) {
       $('#current-temperature').text(data.main.temp)
