@@ -1,12 +1,12 @@
 # Thermostat App
 
-![alt text](https://github.com/chrisjgilbert/thermostat-app/public/screenshot.png)
+![screen shot](public/screenshot.png)
 
 ## How To Use
 
-`bundle`
-`ruby app.rb`
-`http://localhost:4567/`
+`bundle`  
+`ruby app.rb`  
+`http://localhost:4567/`  
 
 * Thermostat starts at 20 degrees
 * You can increase the temperature with an up function
