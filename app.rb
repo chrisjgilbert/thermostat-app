@@ -9,20 +9,20 @@ class ThermostatApp < Sinatra::Base
   end
 
   get '/' do
-    erb :indexs
+    erb :index
   end
 
   get '/temperature' do
     temperature = session[:temperature] || 20.to_s
-    # session = session[:energyUsage]
+    psm = session[:psm] || true
 
     content_type :json
-    { temperature: temperature }.to_json
+    { temperature: temperature, psm: psm }.to_json
   end
 
   post '/savetemperature' do
     session[:temperature] = params[:temperature]
-    # session[:energy] = params[:energy]
+    session[:psm] = params[:psm]
     redirect '/'
   end
 

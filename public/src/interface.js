@@ -2,7 +2,7 @@ $(document).ready(function() {
 
   var thermostat = new Thermostat;
   $('#city-display').hide();
-  thermostat.setCurrentTemperature(getTemperature());
+  getTemperature(updateTemperature);
 
   $('#increase-temp').on('click', function() {
     thermostat.inscreaseTemperature();
@@ -32,15 +32,14 @@ $(document).ready(function() {
 
   function updateTemperature() {
     $('#temperature').text(thermostat.getCurrentTemperature());
-    updatePSMStatus();
-    postTemperature();
+      postTemperature();
+      updatePSMStatus();
   };
 
-  function getTemperature() {
+  function getTemperature(callback) {
     $.get("http://localhost:4567/temperature", function(data) {
-      $('#temperature').text(data.temperature);
       thermostat.setCurrentTemperature(data.temperature);
-      return data.temperature;
+      callback();
     })
   };
 
